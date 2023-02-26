@@ -1,0 +1,25 @@
+# lit_trainer
+
+Trainer for memorizing words forms in lithuanian
+
+## Installation
+
+```bash
+$ pip install lit_trainer
+```
+
+## Usage
+
+- TODO
+
+## Contributing
+
+Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+
+## License
+
+`lit_trainer` was created by k_eryomenko. It is licensed under the terms of the MIT license.
+
+## Credits
+
+`lit_trainer` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
