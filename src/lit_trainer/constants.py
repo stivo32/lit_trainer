@@ -16,15 +16,8 @@ case_russian = {
     Case.n: 'Дательный',
     Case.g: 'Винительный',
     Case.i: 'Творительный',
-    Case.vt: 'Местный'
+    Case.vt: 'Местный',
 }
 
 
-question = {
-    Case.v: 'Kas?',
-    Case.k: 'Ko?',
-    Case.n: 'Kam?',
-    Case.g: 'Ką?',
-    Case.i: 'Kuo?',
-    Case.vt: 'Kur?'
-}
+question = {Case.v: 'Kas?', Case.k: 'Ko?', Case.n: 'Kam?', Case.g: 'Ką?', Case.i: 'Kuo?', Case.vt: 'Kur?'}
