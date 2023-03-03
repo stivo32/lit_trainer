@@ -1,10 +1,16 @@
 import random
 
-from constants import Case, case_russian
-from vocabulary.vocabulary import vocabulary
+from colorama import Fore, Style, init
+
+from .constants import Case, case_russian
+from .vocabulary.vocabulary import vocabulary
+
+init()
 
 
-def collect_phrase(sex, count):
+def collect_phrase():
+    sex = random.choice(['male', 'female'])
+    count = random.choice(['single', 'plural'])
     nouns = list(vocabulary[sex][count]['noun'])
     adjectives = list(vocabulary[sex][count]['adjective'])
     pronouns = list(vocabulary[sex][count]['pronoun'])
@@ -20,12 +26,20 @@ def choose_case():
 
 def change_phrase(phrase, case):
     changed_phrase = list(map(lambda word: word.get(case), phrase))
-    return " ".join(changed_phrase)
+    return changed_phrase
 
 
 def get_initial_phrase(phrase):
     changed_phrase = list(map(lambda word: word.get('v'), phrase))
-    return " ".join(changed_phrase)
+    return changed_phrase
+
+
+def wrap_in_color(phrase, color):
+    return f'{color}{phrase}{Style.RESET_ALL}'
+
+
+def joined(phrase):
+    return " ".join(phrase)
 
 
 def train():
@@ -34,19 +48,29 @@ def train():
     print('Поехали!')
     print()
     while True:
-        sex = random.choice(['male', 'female'])
-        count = random.choice(['single', 'plural'])
-        phrase = collect_phrase(sex, count)
+        phrase = collect_phrase()
         case = choose_case()
         changed_phrase = change_phrase(phrase, case.value)
-        print(f'Словосочетание: {get_initial_phrase(phrase)}')
-        answer = input(f'Просклоняйте словосочетание в падеже: "{case_russian[case]}":\n')
+        print(f'Словосочетание: {joined(get_initial_phrase(phrase))}')
+
+        answer = input(f'Просклоняйте словосочетание в падеже: "{wrap_in_color(case_russian[case], Fore.RED)}":\n')
+        answer = answer.lower()
+
         if answer == changed_phrase:
             print('Верно!')
         elif answer == 'exit':
             break
         else:
-            print(f'Неверно! Правильный ответ: {changed_phrase}')
+            splited_answer = answer.split()
+            if len(splited_answer) != len(changed_phrase):
+                print(f'Неверно! Правильный ответ: {joined(changed_phrase)}\n')
+            else:
+                errors_indexes = [splited_answer[i] != changed_phrase[i] for i in range(len(splited_answer))]
+                output_phrase = [
+                    word if not errors_indexes[i] else wrap_in_color(word, Fore.YELLOW)
+                    for i, word in enumerate(changed_phrase)
+                ]
+                print(f'Неверно! Правильный ответ: {joined(output_phrase)}')
         print()
 
 
