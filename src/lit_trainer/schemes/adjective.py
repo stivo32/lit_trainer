@@ -56,11 +56,11 @@ class AdjectiveMaleSingleIs(AdjectiveMale):
 
 class AdjectiveMalePluralI(AdjectiveMale):
     v = "i"
-    k = "ų"
+    k = "ių"
     n = "iems"
-    g = "us"
-    i = "ais"
-    vt = "uose"
+    g = "ius"
+    i = "iais"
+    vt = "iuose"
 
     def __init__(self, word):
         super().__init__(word)
