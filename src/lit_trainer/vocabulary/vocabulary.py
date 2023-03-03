@@ -2,41 +2,65 @@ import os
 
 from dotenv import load_dotenv
 
-from schemes.adjective import AdjectiveFactory
-from schemes.noun import NounFactory
-from schemes.word import WordFromForms
+from ..schemes.adjective import AdjectiveFactory
+from ..schemes.noun import NounFactory
+from ..schemes.word import WordFromForms
 
+if not os.path.exists('extra_vocabulary.env'):
+    print('File "extra_vocabulary.env" not found. Please create it and add your own vocabulary.')
 load_dotenv('../extra_vocabulary.env')
 
 # nouns
 
-male_single_nouns = ['vietas', 'namas', 'vilnius', 'minskas', 'butas']
-male_plural_nouns = ['tevai', 'namai', 'sunūs']
-female_single_nouns = ['kavinė', 'nuolaida', 'draugė', 'mama']
-female_plural_nouns = ['kavinės', 'nuolaidos', 'draugės', 'mamos']
+male_single_nouns = [
+    'vietas',
+    'namas',
+    'vilnius',
+    'minskas',
+    'butas',
+    'televizorius',
+    'brolis',
+    'centras',
+    'atstumas',
+    'medus',
+    'pakelis',
+]
+male_plural_nouns = ['tevai', 'namai', 'sunūs', 'langai', 'mandarinai', 'riešutai', 'vaisiai']
+female_single_nouns = ['kavinė', 'nuolaida', 'draugė', 'mama', 'bauda', 'dešra', 'striukė']
+female_plural_nouns = ['kavinės', 'nuolaidos', 'draugės', 'mamos', 'ausinės']
 
 # adjectives
 
 
-male_single_adjectives = ['šviesus', 'geltonas', 'geras', 'didelis', 'gražus', 'skanus']
-male_plural_adjectives = ['šviesūs', 'geltoni', 'geri', 'dideli', 'gražūs', 'skani']
-female_single_adjectives = ['gera', 'graži', 'skani', 'šviesi', 'geltona']
-female_plural_adjectives = ['geros', 'gražios', 'skanios', 'šviesios', 'geltonos']
+male_single_adjectives = [
+    'šviesus',
+    'geltonas',
+    'geras',
+    'didelis',
+    'gražus',
+    'skanus',
+    'greitas',
+    'tvarkingas',
+    'stiprus',
+]
+male_plural_adjectives = ['šviesūs', 'geltoni', 'geri', 'dideli', 'gražūs', 'skani', 'trupmi']
+female_single_adjectives = ['gera', 'graži', 'skani', 'šviesi', 'geltona', 'greita', 'stipri']
+female_plural_adjectives = ['geros', 'gražios', 'skanios', 'šviesios', 'geltonos', 'greitos']
 
 # pronouns
 
 common_single_noun_pronouns = [
     ['aš', 'manęs', 'man', 'mane', 'manimi', 'manyje'],
-    ['tu', 'tave', 'tavęs', 'tave', 'tavimi', 'tavyje'],
+    ['tu', 'tavęs', 'tau', 'tave', 'tavimi', 'tavyje'],
 ]
 common_plural_noun_pronouns = [
     ['mes', 'mūsų', 'mums', 'mus', 'mumis', 'mumyse'],
     ['jūs', 'jūsų', 'jums', 'jus', 'jumis', 'jumyse'],
 ]
 male_single_noun_pronouns = [['jis', 'jo', 'jam', 'jį', 'juo', 'jame'], *common_single_noun_pronouns]
-male_plural_noun_pronouns = [['jie', 'ju', 'jų', 'jų', 'jais', 'jose'], *common_plural_noun_pronouns]
-female_single_noun_pronouns = [['ji', 'jos', 'jos', 'ją', 'ja', 'joje'], *common_single_noun_pronouns]
-female_plural_noun_pronouns = [['jos', 'jos', 'jų', 'jų', 'jomis', 'jose'], *common_plural_noun_pronouns]
+male_plural_noun_pronouns = [['jie', 'jų', 'jiems', 'juos', 'jais', 'juose'], *common_plural_noun_pronouns]
+female_single_noun_pronouns = [['ji', 'jos', 'jai', 'ją', 'ja', 'joje'], *common_single_noun_pronouns]
+female_plural_noun_pronouns = [['jos', 'jų', 'joms', 'jas', 'jomis', 'jose'], *common_plural_noun_pronouns]
 
 male_single_adjective_pronouns = [
     ['kitas', 'kito', 'kitam', 'kitą', 'kitu', 'kitame'],
