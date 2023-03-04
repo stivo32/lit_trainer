@@ -41,6 +41,15 @@ class NounMaleSingleUs(Noun):
     vt = "uje"
 
 
+class NounMaleSingleUo(Noun):
+    v = "uo"
+    k = "ens"
+    n = "eniui"
+    g = "enį"
+    i = "eniu"
+    vt = "enyje"
+
+
 class NounMalePluralAi(Noun):
     v = "ai"
     k = "ų"
@@ -57,6 +66,19 @@ class NounMalePluralUs(Noun):
     g = "us"
     i = "umis"
     vt = "uose"
+
+
+class NounMalePluralEnys(Noun):
+    v = "enys"
+    k = "enų"
+    n = "enims"
+    g = "enis"
+    i = "enimis"
+    vt = "enyse"
+
+    def __init__(self, word):
+        super().__init__(word)
+        self.root = self.word[:-4]
 
 
 class NounFemaleSingle(Noun):
@@ -110,10 +132,14 @@ class NounFactory:
             return NounMaleSingleIs(word)
         elif word.endswith("us"):
             return NounMaleSingleUs(word)
+        elif word.endswith("uo"):
+            return NounMaleSingleUo(word)
         elif word.endswith("ai"):
             return NounMalePluralAi(word)
         elif word.endswith("ūs"):
             return NounMalePluralUs(word)
+        elif word.endswith("enys"):
+            return NounMalePluralEnys(word)
         elif word.endswith("a"):
             return NounFemaleSingleA(word)
         elif word.endswith("ė"):
