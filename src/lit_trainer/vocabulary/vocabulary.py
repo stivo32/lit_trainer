@@ -62,6 +62,29 @@ male_plural_noun_pronouns = [['jie', 'jų', 'jiems', 'juos', 'jais', 'juose'], *
 female_single_noun_pronouns = [['ji', 'jos', 'jai', 'ją', 'ja', 'joje'], *common_single_noun_pronouns]
 female_plural_noun_pronouns = [['jos', 'jų', 'joms', 'jas', 'jomis', 'jose'], *common_plural_noun_pronouns]
 
+male_single_complex_nouns = [
+    ['žmogus', 'žmogaus', 'žmogui', 'žmogų', 'žmogumi', 'žmoguje'],
+    ['šuo', 'šuns', 'šuniui', 'šunį', 'šunimi', 'šunyje'],
+    ['mėnuo', 'mėnesio', 'mėnesiui', 'mėnesį', 'mėnesiu', 'mėnesyje'],
+    ['miegamasis', 'miegamojo', 'miegamajam', 'miegamąjį', 'miegamuoju', 'miegamajame'],
+]
+male_plural_complex_nouns = [
+    ['žmonės', 'žmonių', 'žmonėms', 'žmones', 'žmonėmis', 'žmonėse'],
+    ['šunys', 'šunų', 'šunims', 'šunis', 'šunimis', 'šunyse'],
+    ['mėnesiai', 'mėnesių', 'mėnesiams', 'mėnesius', 'mėnesiais', 'mėnesiuose'],
+    ['miegamieji', 'miegamųjų', 'miegamiesiems', 'miegamuosius', 'miegamaisiais', 'miegamuosiuose'],
+]
+female_single_complex_nouns = [
+    ['sesuo', 'sesers', 'seseriai', 'seserį', 'seseria', 'seseryje'],
+    ['duktė', 'dukters', 'dukteriai', 'dukterį', 'dukteria', 'dukteryje'],
+    ['moteris', 'moters', 'moteriai', 'moterį', 'moterimi', 'moteryje'],
+]
+female_plural_complex_nouns = [
+    ['seserys', 'seserų', 'seserims', 'seseris', 'seserimis', 'seseryse'],
+    ['dukterys', 'dukterų', 'dukterims', 'dukteris', 'dukterimis', 'dukteryse'],
+    ['moterys', 'moterų', 'moterims', 'moteris', 'moterimis', 'moteryse'],
+]
+
 male_single_adjective_pronouns = [
     ['kitas', 'kito', 'kitam', 'kitą', 'kitu', 'kitame'],
     ['visas', 'viso', 'visam', 'visą', 'visu', 'visame'],
@@ -149,19 +172,19 @@ def fill_vocabulary():
             )
             for word in male_single_nouns
         ],
-        *[WordFromForms(forms) for forms in male_single_noun_pronouns],
+        *[WordFromForms(forms) for forms in male_single_noun_pronouns + male_single_complex_nouns],
     }
     vocabulary['male']['plural']['noun'] = {
         *[NounFactory.create_word(word) for word in male_plural_nouns],
-        *[WordFromForms(forms) for forms in male_plural_noun_pronouns],
+        *[WordFromForms(forms) for forms in male_plural_noun_pronouns + male_plural_complex_nouns],
     }
     vocabulary['female']['single']['noun'] = {
         *[NounFactory.create_word(word) for word in female_single_nouns],
-        *[WordFromForms(forms) for forms in female_single_noun_pronouns],
+        *[WordFromForms(forms) for forms in female_single_noun_pronouns + female_single_complex_nouns],
     }
     vocabulary['female']['plural']['noun'] = {
         *[NounFactory.create_word(word) for word in female_plural_nouns],
-        *[WordFromForms(forms) for forms in female_plural_noun_pronouns],
+        *[WordFromForms(forms) for forms in female_plural_noun_pronouns + female_plural_complex_nouns],
     }
     vocabulary['male']['single']['adjective'] = {
         AdjectiveFactory.create_word(word, 'male') for word in male_single_adjectives
