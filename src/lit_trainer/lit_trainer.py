@@ -68,11 +68,10 @@ def train():
         case = choose_case()
         changed_phrase = change_phrase(phrase, case.value)
         print(f'Словосочетание: {joined(get_initial_phrase(phrase))}')
-
-        answer = input(f'Просклоняйте словосочетание в падеже: "{wrap_in_color(case_russian[case], Fore.RED)}":\n')
+        printed_case = wrap_in_color(f"{case_russian[case]}({question[case]})", Fore.RED)
+        answer = input(f'Просклоняйте словосочетание в падеже: "{printed_case}":\n')
         answer = answer.lower()
-
-        if answer == changed_phrase:
+        if answer == joined(changed_phrase):
             print('Верно!')
         elif answer == 'exit':
             break
