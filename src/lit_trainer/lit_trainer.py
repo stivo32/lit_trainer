@@ -2,7 +2,7 @@ import random
 
 from colorama import Fore, Style, init
 
-from .constants import Case, case_russian
+from .constants import Case, case_russian, question
 from .vocabulary.vocabulary import vocabulary
 
 init()
@@ -42,6 +42,22 @@ def joined(phrase):
     return " ".join(phrase)
 
 
+def print_rules(words):
+    print(f'Таблица склонений для слов с ошибками:')
+    messages = []
+    for case in list(Case):
+        case_message = f'| {question[case]:4} |'
+        for word in words:
+            max_len = max([len(word.get(case.value)) for case in list(Case)])
+            case_message += f' {word.get(case.value).ljust(max_len, " ")} |'
+        messages.append(case_message)
+    max_len = max([len(message) for message in messages])
+    print('=' * max_len)
+    for message in messages:
+        print(message)
+    print('=' * max_len)
+
+
 def train():
     print('Добро пожаловать в тренажер по склонению словосочетаний на литовском!')
     print('Для выхода из программы введите "exit"')
@@ -71,6 +87,7 @@ def train():
                     for i, word in enumerate(changed_phrase)
                 ]
                 print(f'Неверно! Правильный ответ: {joined(output_phrase)}')
+                print_rules([phrase[i] for i, has_error in enumerate(errors_indexes) if has_error])
         print()
 
 
